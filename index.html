@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./images/favicon.png">
+    <title>ModKits</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <header>
+            <a href="index.html" class="logo-link">
+                <img src="./images/logo_gradient.png" alt="modkits_logo" class="logo">
+            </a>
+            <div class="cart-container">
+                <button class="cart-btn" aria-label="Shopping Cart">
+                    🛒
+                    <span class="cart-badge">0</span>
+                </button>
+            </div>
+        </header>
+    </nav>
+
+    <section class="hero-slider">
+        <div class="swiper-wrapper">
+            <!-- Slide 1 -->
+            <div class="swiper-slide">
+                <div class="slide-content">
+                    <div class="text-column">
+                        <h1>Gundam Barbatos</h1>
+                        <p>The Master Grade (MG) Gundam Barbatos (1/100 scale)
+                            is a highly acclaimed, masterfully engineered model kit.
+                            Featuring an incredibly detailed inner "Gundam Frame"
+                            and working metallic pistons, it offers a highly rewarding
+                            build with exceptional, dynamic articulation</p>
+                        <a href="#featured-products" class="btn-buy">Buy Now</a>
+                    </div>
+                    <div class="image-column">
+                        <img src="./images/barbatos.png" alt="Gundam Barbatos product">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="swiper-slide">
+                <div class="slide-content">
+                    <div class="text-column">
+                        <h1>Gundam Astray Red Frame</h1>
+                        <p>The Master Grade (MG) Gundam Astray Red Frame is
+                            one of Bandai’s most popular 1/100 scale model kits,
+                            famous for its distinct red inner skeleton,
+                            dynamic articulation, and iconic samurai sword weapon.</p>
+                        <a href="#featured-products" class="btn-buy">Buy Now</a>
+                    </div>
+                    <div class="image-column">
+                        <img src="./images/astray.png" alt="Gundam Astray Red Frame product">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="swiper-slide">
+                <div class="slide-content">
+                    <div class="text-column">
+                        <h1>Nu Gundam Ver.Ka</h1>
+                        <p>The Master Grade (MG) Nu Gundam Ver.Ka (Version Katoki)
+                            is a premium 1/100 scale kit redesigned by famed
+                            mecha designer Hajime Katoki. It delivers a highly
+                            stylized, mechanically dense interpretation of
+                            Amuro Ray’s iconic mobile suit from Char's Counterattack.</p>
+                        <a href="#featured-products" class="btn-buy">Buy Now</a>
+                    </div>
+                    <div class="image-column">
+                        <img src="./images/nu_ver.ka.png" alt="Gundam Nu Ver.Ka product">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="swiper-button-prev">&#10094;</button>
+        <button class="swiper-button-next">&#10095;</button>
+    </section>
+
+    <main id="featured-products" class="content-container">
+        <h2 class="section-title">Featured Products</h2>
+        <div id="product-grid" class="product-flex-grid"></div>
+    </main>
+
+    <div id="cart-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Close modal">&times;</button>
+            <h3>Your Shopping Cart</h3>
+            <p class="cart-summary">Number of items in the cart: <span id="modal-item-count">0</span></p>
+            
+            <div id="modal-items-container" class="modal-items-grid"></div>
+            
+            <div class="modal-total-section">
+                <span>Total Amount:</span>
+                <span id="modal-total-price">Php 0</span>
+            </div>
+            
+            <div class="modal-footer">
+                <button id="btn-clear-cart" class="btn-clear">Clear Cart</button>
+                <button class="btn-checkout">Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 ModKits. All rights reserved.</p>
+    </footer>
+
+    <script src="index.js" defer></script>
+</body>
+
+</html>

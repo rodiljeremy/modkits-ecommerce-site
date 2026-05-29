@@ -1,0 +1,670 @@
+/* ==========================================================================
+   1. GLOBAL STYLES & RESET
+   ========================================================================== */
+html {
+    scroll-behavior: smooth;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+html, body {
+    width: 100%;
+}
+
+/* ==========================================================================
+   2. NAVIGATION BAR
+   ========================================================================== */
+.navbar {
+    background-color: rgba(0, 0, 0, 1);
+    margin: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    width: 100%;
+    /* CRITICAL: Allows the background opacity change to blend smoothly */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; 
+}
+
+.navbar.scrolled {
+    background-color: rgba(0, 0, 0, 85%);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 40%);
+}
+
+/* Container wrapper to keep navbar items aligned left */
+.navbar header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px 25px;
+    box-sizing: border-box;
+}
+
+/* Base style for nav link elements */
+.navbar a {
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-block;
+}
+
+#featured-products {
+    scroll-margin-top: 90px; 
+}
+
+.logo-link {
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    padding: 5px 0;
+}
+
+.logo {
+    height: 80px;
+    width: auto;
+    background-color: transparent;
+    transition: filter 0.3s ease, transform 0.3s ease;
+    z-index: 2;
+}
+
+.logo-link:hover .logo {
+    transform: scale(1.03);
+    filter: brightness(1.4) drop-shadow(0 0 8px #2b7fff) drop-shadow(0 0 20px #00d2ff);
+}
+
+/* ==========================================================================
+   MOBILE EXCLUSIVE NAVBAR SPACER
+   ========================================================================== */
+@media (max-width: 480px) {
+    .navbar header {
+        padding: 5px 12px; /* Tightens padding to squeeze items back into the viewport canvas */
+    }
+
+    .logo {
+        height: 40px; /* Reduces logo height scale so it leaves room for the cart button */
+        width: auto;
+    }
+
+    .cart-btn {
+        font-size: 20px; /* Scales icon glyph down gracefully on small phone viewports */
+        padding: 4px;
+    }
+
+    .cart-badge {
+        top: -6px;
+        right: -8px;
+        min-width: 16px;
+        height: 16px;
+        font-size: 9px; /* Scales down the numeric badge circle slightly */
+    }
+}
+
+/* ==========================================================================
+   3. RESPONSIVE HERO SLIDER ENGINE (MOBILE-FIRST SETUP)
+   ========================================================================== */
+.hero-slider {
+    width: 100%;
+    background: linear-gradient(135deg, #010638, #9cbafc);
+    position: relative;
+    overflow: hidden;
+    height: auto;
+    padding-bottom: 30px;
+}
+
+.swiper-wrapper {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-wrapper .swiper-slide {
+    min-width: 100%;
+    flex-shrink: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Mobile stacked content box layout rules */
+.slide-content {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    gap: 25px;
+    box-sizing: border-box;
+}
+
+.text-column {
+    width: 100%;
+    color: #ffffff;
+    text-align: center;
+}
+
+.image-column {
+    width: 100%;
+    height: 45vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-column img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.text-column h1 {
+    font-size: 1.8rem;
+    margin-bottom: 12px;
+    line-height: 1.2;
+}
+
+.text-column p {
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+    opacity: 0.9;
+    line-height: 1.4;
+}
+
+.btn-buy {
+    display: inline-block;
+    background-color: #ff9900;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    transition: background-color 0.2s ease;
+}
+
+.btn-buy:hover {
+    background-color: #e68a00;
+}
+
+/* Navigation Arrows layout placement constraints */
+.swiper-button-prev, .swiper-button-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.4);
+    color: #ffffff;
+    border: none;
+    padding: 14px 16px;
+    cursor: pointer;
+    z-index: 10;
+    font-size: 18px;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+
+.swiper-button-prev {
+    left: 10px;
+}
+
+.swiper-button-next {
+    right: 10px;
+}
+
+.swiper-button-prev:hover, .swiper-button-next:hover {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+/* ==========================================================================
+   4. DESKTOP VIEWPORT MEDIA OVERRIDES (Widescreens Larger Than 768px)
+   ========================================================================== */
+@media (min-width: 768px) {
+    .hero-slider {
+        height: 500px;
+    }
+
+    .swiper-wrapper, .swiper-wrapper .swiper-slide {
+        height: 100%;
+    }
+
+    .slide-content {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 80px;
+        gap: 40px;
+        height: 100%;
+    }
+
+    .text-column {
+        width: 50%;
+        text-align: left;
+    }
+
+    .image-column {
+        width: 50%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .image-column img {
+        max-height: 85%;
+        width: auto;
+    }
+
+    .text-column h1 {
+        font-size: 2.8rem;
+        margin-bottom: 20px;
+    }
+
+    .text-column p {
+        font-size: 1rem;
+        margin-bottom: 30px;
+    }
+}
+
+/* ==========================================================================
+   5. SITE FOOTER BLOCK
+   ========================================================================== */
+footer {
+    background-color: #000000;
+    padding: 15px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    color: #ffffff;
+    width: 100%;
+    z-index: 90;
+}
+
+/* ==========================================================================
+   6. NAVBAR SHOPPING CART & BADGE
+   ========================================================================== */
+.cart-container {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+
+.cart-btn {
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    color: #ffffff;
+}
+
+.cart-btn:hover {
+    transform: scale(1.08);
+}
+
+.cart-badge {
+    position: absolute;
+    top: -4px;
+    right: -6px;
+    background-color: #ff9900;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: bold;
+    min-width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    border: 2px solid #000000;
+}
+
+/* ==========================================================================
+   7. DYNAMIC PRODUCT FLEX GRID
+   ========================================================================== */
+.content-container {
+    max-width: 100%;
+    background: linear-gradient(135deg, #01031a, #21316e);
+    margin: 0;
+    padding: 60px 20px;
+    box-sizing: border-box;
+}
+
+.section-title {
+    color: #ffffff;
+    font-size: 1.8rem;
+    margin: 0 auto 35px auto;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 2px solid #ff9900;
+    padding-bottom: 5px;
+    display: table;
+    text-align: center;
+}
+
+.product-flex-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    justify-content: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.product-card {
+    background: #272a467e;
+    border: 1px solid rgba(156, 186, 252, 0.15);
+    border-radius: 8px;
+    flex: 1 1 calc(25% - 20px); 
+    min-width: 260px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    border-color: #ff9900;
+    box-shadow: 0 5px 15px rgba(255, 153, 0, 0.2);
+}
+
+.card-img-holder {
+    width: 100%;
+    height: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #d4c4af; 
+    border-radius: 6px;
+    padding: 10px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.card-img-holder img {
+    max-width: 100% !important;  /* Forces image to scale down to the card width */
+    max-height: 100% !important; /* Forces image to scale down to the 180px card height */
+    width: auto;
+    height: auto;
+    object-fit: contain;
+}
+
+.product-card h4 {
+    color: #ffffff;
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+}
+
+.product-card .brand {
+    color: #ff9900;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.product-colors {
+    color: #fcad03;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.product-card .price {
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-top: auto;
+    margin-bottom: 15px;
+    background: rgba(255, 153, 0, 0.2);
+    padding: 5px 15px;
+    border-radius: 20px;
+    border: 1px solid #ff9900;
+}
+
+.btn-order {
+    background-color: #ff9900;
+    color: #ffffff;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 4px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: auto;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn-order:hover {
+    background-color: #e68a00;
+}
+
+.btn-order:active {
+    transform: scale(0.98);
+}
+
+/* ==========================================================================
+   8. SHOPPING CART MODAL ENGINE
+   ========================================================================== */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+.modal-content {
+    background: #04093b;
+    color: #ffffff;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 8px;
+    padding: 30px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: #888888;
+}
+
+.modal-close:hover {
+    color: #ff9900;
+}
+
+.cart-summary {
+    font-size: 1.1rem;
+    margin: 15px 0;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ff9900;
+}
+
+.modal-items-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-height: 240px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+    padding-right: 5px;
+}
+
+.modal-item-thumb {
+    border: 1px solid #ff9900;
+    border-radius: 6px;
+    padding: 10px;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.modal-item-thumb img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    background: #d4c4af;
+    padding: 3px;
+    border-radius: 4px;
+}
+
+.thumb-details {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.thumb-details h5 {
+    font-size: 1rem;
+    color: #fafafc;
+}
+
+.thumb-details p {
+    font-size: 1rem;
+    color: #ff9900;
+    font-weight: bold;
+}
+
+.modal-total-section {
+    margin: 15px 0;
+    padding-top: 15px;
+    border-top: 2px solid #ff9900;
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #ff9900;
+}
+
+#modal-total-price {
+    color: #ff9900;
+}
+
+.modal-footer {
+    text-align: right;
+    display: flex; 
+    justify-content: 
+    space-between; 
+    align-items: center;
+}
+
+.btn-checkout {
+    background-color: #ff9900a1;
+    color: rgba(255, 255, 255, 0.719);
+    border: none;
+    padding: 12px 30px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s ease;
+}
+
+.btn-checkout:hover {
+    background-color: #ff9900;
+    color: white;
+}
+
+.thumb-details {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.item-info-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.item-qty-badge {
+    background: #010638;
+    color: #ffffff;
+    font-size: 0.8rem;
+    font-weight: bold;
+    padding: 3px 10px;
+    border-radius: 12px;
+    border: 1px solid #ff9900;
+}
+
+.btn-remove-item {
+    background: #ff3333;
+    color: #ffffff;
+    border: none;
+    width: 28px;
+    height: 28px;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease;
+}
+
+.btn-remove-item:hover {
+    background: #cc0000;
+}
+
+.btn-clear {
+    background: rgba(255, 0, 0, 0.541);
+    color: #f1bfbf;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.btn-clear:hover {
+    background: #ff3333;
+    color: #ffffff;
+}
+
+@media (max-width: 768px) {
+    .product-card {
+        flex: 1 1 calc(50% - 15px);
+    }
+}
+
+@media (max-width: 480px) {
+    .product-card {
+        flex: 1 1 100%;
+    }
+}

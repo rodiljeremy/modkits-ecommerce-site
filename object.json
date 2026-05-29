@@ -1,0 +1,68 @@
+{
+    "product": [
+        {
+            "name": "Gundam Barbatos",
+            "brand": "Bandai",
+            "description": "MG 1/100 Scale",
+            "price": "4500",
+            "color": "White / Blue / Red / Yellow",
+            "image": "./images/barbatos.png"
+        },
+        {
+            "name": "Gundam Astray Red Frame",
+            "brand": "Bandai",
+            "description": "MG 1/100 Scale",
+            "price": "4600",
+            "color": "White / Red / Black",
+            "image": "./images/astray.png"
+        },
+        {
+            "name": "Nu Gundam Ver.Ka",
+            "brand": "Bandai",
+            "description": "MG 1/100 Scale",
+            "price": "5500",
+            "color": "White / Dark Navy / Yellow",
+            "image": "./images/nu_ver.ka.png"
+        },
+        {
+            "name": "Gundam Aerial",
+            "brand": "Bandai",
+            "description": "HG 1/144 Scale",
+            "price": "1200",
+            "color": "White / Blue / Yellow / Red",
+            "image": "./images/aerial.png"
+        },
+        {
+            "name": "RX-78-2 Gundam",
+            "brand": "Bandai",
+            "description": "RG 1/144 Scale",
+            "price": "2300",
+            "color": "White / Blue / Red / Yellow",
+            "image": "./images/rx-78-2.png"
+        },
+        {
+            "name": "Sazabi Ver.Ka",
+            "brand": "Bandai",
+            "description": "MG 1/100 Scale",
+            "price": "7500",
+            "color": "Crimson Red / Black / Yellow",
+            "image": "./images/sazabi_ver.ka.png"
+        },
+        {
+            "name": "Strike Freedom Gundam",
+            "brand": "Bandai",
+            "description": "PG Perfect Grade 1/60 Scale",
+            "price": "15000",
+            "color": "White / Blue / Gold / Red",
+            "image": "./images/strike_freedom.png"
+        },
+        {
+            "name": "Wing Gundam Zero EW",
+            "brand": "Bandai",
+            "description": "SD Super Deformed",
+            "price": "650",
+            "color": "White / Blue / Teal / Red",
+            "image": "./images/wing.png"
+        }
+    ]
+}
